@@ -34,7 +34,7 @@ namespace Koans.Utils
 			AssertLesson(test, answer, testFailure: true);
 		}
 
-		public static void AssertLesson<T>(Action<T> test, Action<T> answer, bool testFailure) where T : new()
+	    private static void AssertLesson<T>(Action<T> test, Action<T> answer, bool testFailure) where T : new()
 		{
 			var l = new T();
 			if (testFailure)
@@ -60,7 +60,7 @@ namespace Koans.Utils
 			Assert.IsTrue(failed, "The Lesson is already passing [Need to add a blank]");
 		}
 
-		public static void FillAll(this object lesson, object answer)
+	    private static void FillAll(this object lesson, object answer)
 		{
 			var fields = lesson.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public|BindingFlags.SetField);
 			foreach (var f in fields)
