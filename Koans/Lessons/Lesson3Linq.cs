@@ -22,7 +22,7 @@ namespace Koans.Lessons
         {
             var numbers = Observable.Range(1, 100);
             var results = from x in numbers
-                          where x % ____ == 0
+                          where x % 11 == 0
                           select x.ToString();
             var strings = results.ToEnumerable().ToArray();
             Assert.AreEqual("11,22,33,44,55,66,77,88,99", String.Join(",", strings));
@@ -34,7 +34,7 @@ namespace Koans.Lessons
             IObservable<Point> clicks = RxKoans.CreateMouseEvents(new Point(100, 50), new Point(75, 75), new Point(40, 80));
             var results = from click in clicks
                           where click.X == click.Y
-                          select ___;
+                          select click;
             results.Subscribe(HighlightCrossHairs);
         }
 

@@ -20,7 +20,7 @@ namespace Koans.Lessons
 				public void ComposableAddition()
 				{
 						int received = 0;
-						var numbers = new[] { 10, 100, ___ };
+						var numbers = new[] { 10, 100, 1000 };
 						numbers.ToObservable().Sum().Subscribe(x => received = x);
 						Assert.AreEqual(1110, received);
 				}
@@ -33,7 +33,7 @@ namespace Koans.Lessons
 					string b = "";
 
 					names.ToObservable().Do(n => a += n).Where(n => n.IsEven()).Do(n => b += n).Subscribe();
-					Assert.AreEqual(____, a);
+					Assert.AreEqual("123456", a);
 					Assert.AreEqual("246", b);
 
 				}
@@ -43,7 +43,7 @@ namespace Koans.Lessons
 				{
 						var received = new List<String>();
 						var names = new[] { "Bart", "Marge", "Wes", "Linus", "Erik" };
-						names.ToObservable().Where(n => n.Length <= ___).Subscribe(x => received.Add(x));
+						names.ToObservable().Where(n => n.Length <= 4).Subscribe(x => received.Add(x));
 						Assert.AreEqual("[Bart, Wes, Erik]", received.AsString());
 				}
 				
@@ -52,7 +52,7 @@ namespace Koans.Lessons
 				{
 						string received = "";
 						var names = new[] { "wE", "hOpE", "yOU", "aRe", "eNJoyIng", "tHiS" };
-						names.ToObservable().Select(x => x.___()).Subscribe(x => received += x + " ");
+						names.ToObservable().Select(x => x.ToLower()).Subscribe(x => received += x + " ");
 						Assert.AreEqual("we hope you are enjoying this ", received);
 				}
 
@@ -62,7 +62,7 @@ namespace Koans.Lessons
 					string received = "";
 					var mouseXMovements = new[] { 100, 200, 150 };
 					var windowTopX = 50;
-					IObservable<int> relativemouse = mouseXMovements.ToObservable().Select((int x) => x - ___);
+					IObservable<int> relativemouse = mouseXMovements.ToObservable().Select((int x) => x - windowTopX);
 					relativemouse.Subscribe(x => received += x + ", ");
 					Assert.AreEqual("50, 150, 100, ", received);
 				}
@@ -73,13 +73,13 @@ namespace Koans.Lessons
 						bool? received = null;
 						var names = new[] { 2, 4, 6, 8 };
 						names.ToObservable().All(x => x.IsEven()).Subscribe(x => received = x);
-						Assert.AreEqual(____, received);
+						Assert.AreEqual(true, received);
 				}
 				[TestMethod]
 				public void CompositionMeansTheSumIsGreaterThanTheParts()
 				{
 						var numbers = Observable.Range(1, 10);
-						numbers.Where(x => x > ___).Sum().Subscribe(x => Assert.AreEqual(19, x));
+						numbers.Where(x => x > 8).Sum().Subscribe(x => Assert.AreEqual(19, x));
 				}
 				 #region Ignore
 
